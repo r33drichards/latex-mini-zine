@@ -1,0 +1,26 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{papergraphic}[2026/11/19 Graphic paper explainer layout]
+\RequirePackage[paperwidth=148.5mm,paperheight=210mm,margin=13mm]{geometry}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern,tikz,xcolor}
+\usetikzlibrary{arrows.meta}
+\RequirePackage[hidelinks]{hyperref}
+\RequirePackage{qrcode}
+\definecolor{ink}{HTML}{182E36}
+\definecolor{accent}{HTML}{125E53}
+\definecolor{wash}{HTML}{EDF3E6}
+\definecolor{change}{HTML}{9E3925}
+\pagestyle{empty}
+\setlength\parindent{0pt}
+\renewcommand\familydefault{\sfdefault}
+\AtBeginDocument{\color{ink}}
+\newcommand\GraphicTitle[2]{{\color{accent}\small\bfseries #1\par}\smallskip
+  {\fontsize{29}{31}\selectfont\bfseries #2\par}\bigskip}
+\newcommand\GraphicCaption[1]{\par\medskip{\large #1\par}}
+\newenvironment{graphicpanel}
+  {\par\medskip\noindent\begin{tikzpicture}[x=1mm,y=1mm,>=Latex,thick]
+   \path[use as bounding box] (0,0) rectangle (118,42);
+   \fill[wash] (0,0) rectangle (118,42);}
+  {\end{tikzpicture}\par}
+\newcommand\GraphicNext{\vfill\newpage}
+\newcommand\GraphicSource[1]{{\color{black}\qrcode[height=47mm,padding,level=M]{#1}}\par}
